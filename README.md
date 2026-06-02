@@ -10,7 +10,7 @@ Send this EXACT message to your OpenClaw agent:
 
 > Install Cortex Intelligence. Clone https://github.com/carbongotfound/cortex-intelligence into my workspace. Then read ./cortex-intelligence/install.txt and follow every step.
 
-Your agent will clone the repo, read the 7 skill files, register them with `openclaw skills install`, and run the setup wizard. One message, everything handled.
+Your agent will clone the repo, read the 7 skill files, and register them with `openclaw skills install`. One message, everything handled.
 
 ## Skills
 

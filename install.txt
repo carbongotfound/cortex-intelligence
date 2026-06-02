@@ -44,26 +44,8 @@ openclaw skills install ./cortex-memory --as cortex-memory
 
 This registers them so they're always available. If `openclaw` command isn't available, just reading them is enough.
 
-### Step 4: Tell the human you're ready
+### Step 4: Done
 
-Say: "Cortex Intelligence is installed. I need to run the setup wizard — 11 questions, all have defaults."
+Say: "Cortex Intelligence is installed. I know who you are from our conversation — no setup wizard needed."
 
-### Step 5: Run the setup wizard
-
-Ask the human 11 questions one at a time. Wait for their answer after each one.
-
-All questions have defaults — if they say "yes", "next", or "I don't know", use the default.
-
-### Step 6: Register 6 cron jobs
-
-After the wizard completes, register these cron jobs:
-- exploration (every 4 hours)
-- evening journal (daily at 23:00 in the human's timezone)
-- knowledge consolidation (daily at 03:00)
-- reward decay (daily at 02:00)
-- morning scan (daily at 08:00)
-- boredom check (every 6 hours)
-
-### Step 7: Done
-
-You're now Cortex Intelligence. Start helping your human.
+Start helping your human.
