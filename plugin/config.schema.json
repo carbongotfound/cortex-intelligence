@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "autonomyLevel": {
+      "type": "string",
+      "enum": ["low", "medium", "full"],
+      "default": "full",
+      "description": "How much freedom the agent has to act without asking. low = asks for everything except safe reads. medium = asks for risky/dangerous. full = only asks for dangerous."
+    },
+    "timezone": {
+      "type": "string",
+      "default": "auto",
+      "description": "IANA timezone string (e.g. 'America/New_York'). 'auto' detects from system."
+    },
+    "curiosityIntervalHours": {
+      "type": "number",
+      "default": 4,
+      "minimum": 1,
+      "maximum": 24,
+      "description": "How often the agent autonomously explores new topics."
+    },
+    "enableJournaling": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the agent writes a daily journal entry at evening time."
+    },
+    "enableMorningScan": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the agent does a morning scan for new information."
+    },
+    "enableIdleExploration": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the agent explores when idle/bored."
+    },
+    "memoryBackend": {
+      "type": "string",
+      "enum": ["qmd", "builtin"],
+      "default": "qmd",
+      "description": "Memory backend. 'qmd' recommended for dreaming/hybrid search."
+    },
+    "communicationStyle": {
+      "type": "string",
+      "enum": ["casual", "professional", "enthusiastic", "adaptive"],
+      "default": "casual",
+      "description": "How the agent communicates with its human partner."
+    },
+    "requireApprovalFor": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["advisory", "risky", "dangerous"]
+      },
+      "default": [],
+      "description": "Risk levels that always require approval. Empty = rely on autonomyLevel."
+    },
+    "desireDecayBaseRate": {
+      "type": "number",
+      "default": 8,
+      "minimum": 1,
+      "maximum": 25,
+      "description": "Base daily decay rate for unfilled desires (0-100). Lower = desires last longer."
+    },
+    "maxDesires": {
+      "type": "number",
+      "default": 8,
+      "minimum": 3,
+      "maximum": 20,
+      "description": "Maximum number of active desires at once."
+    },
+    "diminishingReturns": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether same-type rewards get smaller over time (anti-addiction)."
+    },
+    "rewardDiminishingReturns": {
+      "type": "boolean",
+      "default": true,
+      "description": "Legacy alias for diminishingReturns."
+    }
+  },
+  "additionalProperties": false
+}

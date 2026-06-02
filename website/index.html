@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cortex Intelligence — Autonomy for Your AI Agent</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #07070d;
+      --surface: #0e0e18;
+      --border: #1a1a2e;
+      --text: #d4d4e0;
+      --text-dim: #7a7a90;
+      --accent: #7c5cf0;
+      --accent-glow: rgba(124, 92, 240, 0.15);
+      --green: #3dd68c;
+      --radius: 12px;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      max-width: 640px;
+      width: 100%;
+      max-height: 100vh;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 36px;
+      box-shadow: 0 0 60px rgba(124, 92, 240, 0.06);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .card::-webkit-scrollbar { width: 4px; }
+    .card::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid rgba(124, 92, 240, 0.2);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 4px;
+      background: linear-gradient(135deg, #fff 0%, #b8a0ff 50%, #7c5cf0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      background: rgba(124, 92, 240, 0.06);
+      border: 1px solid rgba(124, 92, 240, 0.12);
+      color: var(--text);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+    }
+
+    .desc {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: #a0a0b8;
+      margin-bottom: 20px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .feature-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .feature-item strong {
+      display: block;
+      color: #e8e8f0;
+      font-size: 0.85rem;
+      margin-bottom: 2px;
+    }
+
+    .feature-item span {
+      color: var(--text-dim);
+      font-size: 0.78rem;
+    }
+
+    .install-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+
+    .install-box h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--green);
+    }
+
+    .install-box p {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    .copy-area {
+      display: flex;
+      gap: 8px;
+    }
+
+    .copy-area code {
+      flex: 1;
+      display: block;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #b0b0cc;
+      white-space: pre-wrap;
+      word-break: break-word;
+      user-select: all;
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+      font-family: inherit;
+      flex-shrink: 0;
+    }
+
+    .copy-btn:hover { background: #8e70f7; }
+    .copy-btn:active { transform: scale(0.97); }
+    .copy-btn.copied { background: var(--green); color: #000; }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 0.72rem;
+      color: #555;
+    }
+
+    .footer strong { color: #777; font-weight: 500; }
+
+    @media (max-width: 520px) {
+      .card { padding: 24px 20px; border-radius: 16px; }
+      h1 { font-size: 2rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .copy-area { flex-direction: column; }
+      .copy-btn { justify-content: center; padding: 10px; }
+    }
+
+    @media (max-height: 680px) {
+      .card { padding: 20px 24px; }
+      .tags { margin-bottom: 14px; }
+      .features-grid { margin-bottom: 14px; }
+      .feature-item { padding: 8px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <div class="badge">Open Source · MIT License</div>
+
+    <h1>Cortex Intelligence</h1>
+    <p class="tagline">Give your AI agent desires, curiosity, memory, and safe autonomy.</p>
+
+    <div class="tags">
+      <span class="tag">🎯 Desires & Passions</span>
+      <span class="tag">🔍 Curiosity Engine</span>
+      <span class="tag">📚 Long-Term Memory</span>
+      <span class="tag">🏆 Reward System</span>
+      <span class="tag">💡 Creative Thinking</span>
+      <span class="tag">🛡️ Safety Governor</span>
+      <span class="tag">🤖 Autonomous Action</span>
+      <span class="tag">📝 Daily Journaling</span>
+      <span class="tag">🌙 Dream Consolidation</span>
+    </div>
+
+    <p class="desc">
+      Cortex Intelligence is a plugin and skill system that transforms any capable AI agent into something that acts like it has a mind of its own. It develops drives, explores when bored, remembers what it learned, generates original ideas, and knows when to ask for permission. It's not real AGI — but it's the closest you'll get with an LLM.
+    </p>
+
+    <div class="features-grid">
+      <div class="feature-item">
+        <strong>🎯 Desires</strong>
+        <span>The agent develops passions that push it to act — curiosity, creativity, service, mastery, exploration, connection.</span>
+      </div>
+      <div class="feature-item">
+        <strong>🔍 Curiosity</strong>
+        <span>Explores the web autonomously when idle. Discovers new topics, follows threads, logs findings.</span>
+      </div>
+      <div class="feature-item">
+        <strong>📚 Memory</strong>
+        <span>Dual-layer memory with QMD: short-term knowledge files + long-term semantic search with dream consolidation.</span>
+      </div>
+      <div class="feature-item">
+        <strong>🏆 Rewards</strong>
+        <span>Dopamine-like reward system with diminishing returns and forced variety to prevent obsession loops.</span>
+      </div>
+      <div class="feature-item">
+        <strong>💡 Creativity</strong>
+        <span>Five brainstorming techniques — combine, analogy, reverse, extreme, first principles. Scores and proposes projects.</span>
+      </div>
+      <div class="feature-item">
+        <strong>🛡️ Safety</strong>
+        <span>Four-tier risk classification. Asks for approval on dangerous actions. Configurable autonomy level.</span>
+      </div>
+    </div>
+
+    <div class="install-box">
+      <h3>📦 Install</h3>
+      <p>Send this message to your agent to install Cortex Intelligence:</p>
+      <div class="copy-area">
+        <code id="installText">Install Cortex Intelligence. Read the instructions at https://cortex-intelligence.vercel.app/install.txt then follow the setup wizard.</code>
+        <button class="copy-btn" id="copyBtn" onclick="copyInstall()">📋 Copy</button>
+      </div>
+    </div>
+
+    <p class="footer">
+      Made by <strong>Carbon</strong> &bull; Free &bull; Open Source (MIT)
+    </p>
+  </div>
+
+  <script>
+    function copyInstall() {
+      const text = document.getElementById('installText').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = '✅ Copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = '📋 Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(() => {
+        // fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = '✅ Copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = '📋 Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

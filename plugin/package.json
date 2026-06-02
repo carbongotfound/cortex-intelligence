@@ -1,0 +1,49 @@
+{
+  "name": "cortex-intelligence",
+  "version": "1.0.0",
+  "description": "Cortex Intelligence — Plugin + skill system that gives your AI agent desires, curiosity, memory, creativity, rewards, and safe autonomy.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "cortex",
+    "ai-agent",
+    "autonomy",
+    "desires",
+    "curiosity",
+    "memory"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "openclaw": {
+    "entry": "dist/index.js",
+    "hooks": [
+      "gateway_start",
+      "gateway_stop",
+      "before_prompt_build",
+      "before_tool_call",
+      "after_tool_call",
+      "agent_end"
+    ],
+    "tools": [
+      "cortex_status",
+      "cortex_desire_add",
+      "cortex_desire_list",
+      "cortex_desire_update",
+      "cortex_discover",
+      "cortex_project_list",
+      "cortex_project_propose",
+      "cortex_reflect",
+      "cortex_journal",
+      "cortex_explore",
+      "cortex_configure",
+      "cortex_reset"
+    ]
+  }
+}
