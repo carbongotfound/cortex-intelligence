@@ -1,90 +1,64 @@
-# Cortex Intelligence — Install Guide
+# Cortex Intelligence — Install Instructions for AI Agent
 
-Copy this EXACT message and send it to your OpenClaw agent:
+Follow these steps exactly. Do not skip any step.
 
----
+## Step 1: Clone the repo
 
-> Install Cortex Intelligence.
->
-> Step 1: Clone the repo into my workspace.
-> Run: git clone https://github.com/carbongotfound/cortex-intelligence.git
-> (clones into a folder called cortex-intelligence)
->
-> Step 2: Go into the folder.
-> cd cortex-intelligence
->
-> Step 3: Find the plugin folder.
-> It's at: ./plugin/
-> The entry point is: ./plugin/openclaw.plugin.json
-> All source code is in: ./plugin/src/
-> All skill files are in: ./plugin/skills/
->
-> Step 4: Read every file.
-> Read ./plugin/openclaw.plugin.json
-> Read every .ts file in ./plugin/src/
-> Read every .SKILL.md file in ./plugin/skills/
-> Read ./plugin/package.json
->
-> Step 5: Install dependencies and compile.
-> cd ./plugin
-> Run: npm install
-> Run: npx tsc
-> This creates dist/index.js from the TypeScript source.
->
-> Step 6: Register the plugin with OpenClaw.
-> Read the OpenClaw config file at ~/.openclaw/openclaw.json
-> Add the path to the plugin folder to the "plugins" > "load" > "paths" array.
-> The path should be: the full absolute path of the plugin folder
-> (example: /home/user/cortex-intelligence/plugin)
->
-> Step 7: Tell me you're done.
-> Say: "Cortex Intelligence is installed. I need to run the setup wizard — 11 questions, all have defaults."
->
-> Step 8: Run the wizard.
-> Ask me 11 questions one at a time. Wait for my answer after each one.
-> All questions have defaults — if I say "yes" or "next" or "I don't know", use the default.
->
-> Step 9: After the wizard, register 6 cron jobs for routines.
-> Register these cron jobs:
->   - exploration (every 4 hours)
->   - evening journal (daily at 23:00 in my timezone)
->   - knowledge consolidation (daily at 03:00)
->   - reward decay (daily at 02:00)
->   - morning scan (daily at 08:00)
->   - boredom check (every 6 hours)
->
-> Step 10: Done. Start helping me.
+Run: git clone https://github.com/carbongotfound/cortex-intelligence.git
 
----
+## Step 2: Go into the folder
 
-That's it. One message. The agent follows steps 1 through 10 in order.
+cd cortex-intelligence
 
-## Quick reference (for you, the human)
+## Step 3: Find the plugin
 
-| Step | What happens |
-|------|-------------|
-| 1-2 | Repo cloned to workspace |
-| 3-4 | Agent reads all source files and skills |
-| 5 | TypeScript compiled to JavaScript |
-| 6 | Plugin registered with OpenClaw |
-| 7-8 | Setup wizard (11 questions) |
-| 9 | Cron jobs created |
-| 10 | Plugin is live |
+The plugin folder is at: ./plugin/
+Entry point: ./plugin/openclaw.plugin.json
+Source code: ./plugin/src/
+Skills: ./plugin/skills/
 
-## Requirements
+## Step 4: Read every file
 
-- OpenClaw Gateway running
-- QMD memory plugin (recommended)
-- Agent needs tool access: read, write, edit, exec, cron, web_search, memory
+Read:
+- ./plugin/openclaw.plugin.json
+- Every .ts file in ./plugin/src/
+- Every .SKILL.md file in ./plugin/skills/
+- ./plugin/package.json
 
-## Change settings anytime
+## Step 5: Compile
 
-Tell your agent:
-- "Set autonomy to medium"
-- "Change my timezone to Asia/Tokyo"
-- "Turn on passive mode"
+cd ./plugin
+Run: npm install
+Run: npx tsc
 
----
+This creates dist/index.js from the TypeScript source.
 
-Made by Carbon
-https://github.com/carbongotfound/cortex-intelligence
+## Step 6: Register with OpenClaw
+
+Read ~/.openclaw/openclaw.json
+Find the "plugins" > "load" > "paths" array.
+Add the FULL ABSOLUTE PATH of the plugin folder to that array.
+Example path: /home/user/cortex-intelligence/plugin
+
+## Step 7: Tell the human you're done compiling
+
+Say: "Cortex Intelligence is installed. I need to run the setup wizard — 11 questions, all have defaults."
+
+## Step 8: Run the setup wizard
+
+Ask the human 11 questions one at a time. Wait for their answer after each one.
+All questions have defaults — if they say "yes" or "next" or "I don't know", use the default.
+
+## Step 9: After the wizard, register 6 cron jobs
+
+Register these cron jobs:
+- exploration (every 4 hours)
+- evening journal (daily at 23:00 in the human's timezone)
+- knowledge consolidation (daily at 03:00)
+- reward decay (daily at 02:00)
+- morning scan (daily at 08:00)
+- boredom check (every 6 hours)
+
+## Step 10: Done
+
+Start helping the human.
