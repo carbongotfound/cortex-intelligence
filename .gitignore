@@ -5,3 +5,9 @@ dist/
 .env
 .env.local
 .vercel/
+
+# Website — not part of the plugin distribution
+website/
+
+# Agent-internal files — not for public GitHub
+AGENTS.md

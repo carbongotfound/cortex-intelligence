@@ -18,19 +18,76 @@ Cortex Intelligence is a plugin + skill system that transforms any capable AI ag
 | **📝 Daily Journaling** | Writes journal entries, reflects on the day, consolidates learnings |
 | **🌙 Dream Consolidation** | Overnight, important knowledge gets promoted from short-term files to long-term QMD memory |
 
+## Plugin Structure
+
+```
+cortex-intelligence/
+├── plugin/                    # The plugin itself
+│   ├── openclaw.plugin.json   # Plugin manifest (hooks, tools, entry point)
+│   ├── package.json           # Node.js package config
+│   ├── tsconfig.json          # TypeScript config
+│   ├── config.schema.json     # Plugin config schema
+│   ├── src/                   # TypeScript source
+│   │   ├── index.ts           # Main entry — wires hooks and tools
+│   │   ├── types.ts           # Type definitions
+│   │   ├── state-manager.ts   # Filesystem persistence
+│   │   ├── desire-engine.ts   # Desire lifecycle (create, decay, fulfill)
+│   │   ├── reward-system.ts   # Points, flow state, diminishing returns
+│   │   ├── safety-governor.ts # Risk classification and approvals
+│   │   ├── curiosity-explorer.ts # Exploration logic and novelty scoring
+│   │   ├── creative-engine.ts    # Idea generation and project proposals
+│   │   └── cron-orchestrator.ts  # Schedule autonomous routines
+│   ├── skills/                # Agent skill definitions (SKILL.md)
+│   │   ├── cortex-identity.SKILL.md   # Who you are
+│   │   ├── cortex-think.SKILL.md      # How to reason
+│   │   ├── cortex-explore.SKILL.md    # How to be curious
+│   │   ├── cortex-create.SKILL.md     # How to be original
+│   │   ├── cortex-reflect.SKILL.md    # How to meta-cognize
+│   │   ├── cortex-safe.SKILL.md       # How to be responsible
+│   │   └── cortex-memory.SKILL.md     # How to remember
+│   └── state/                 # Default state files (initialized at setup)
+│       ├── DESIRES.md
+│       ├── DISCOVERIES.md
+│       ├── DREAMS.md
+│       ├── IDENTITY.md
+│       ├── KNOWLEDGE_LOG.md
+│       ├── PROJECTS.md
+│       └── REWARD_HISTORY.md
+├── README.md                  # This file
+├── LICENSE                    # MIT License
+└── .gitignore
+```
+
 ## Install
 
 Send this message to your OpenClaw agent:
 
-> Install Cortex Intelligence. Read the instructions at https://cortex-intelligence-plugin.vercel.app/install.txt then follow the setup wizard.
+> Install Cortex Intelligence from the plugin files. Read `plugin/openclaw.plugin.json` and the skills in `plugin/skills/`. Then follow the setup wizard.
 
-The agent will set everything up automatically. The setup wizard asks 11 questions — all have defaults that give maximum capabilities.
+The setup wizard asks 11 questions — all have defaults that give maximum capabilities.
+
+### Setup Wizard (via the agent)
+
+When your agent detects CORTEX needs setup, it will ask you 11 questions one at a time:
+
+1. **Your name/nickname**
+2. **Timezone confirmation** (auto-detected from your system)
+3. **Your interests** (default: Technology, AI, programming, science, creative projects)
+4. **Your goals** (default: Building cool stuff with AI)
+5. **How to support you** (default: Research, coding, collaboration, exploration)
+6. **Boundaries** (default: No hard boundaries, use common sense)
+7. **Autonomy level** (Low / Medium / **Full** ← recommended)
+8. **Curiosity areas** (default: Everything in AI, emerging tech)
+9. **Creative suggestions** (Autonomously / On request)
+10. **Communication style** (Casual / Professional / Enthusiastic / Adaptive)
+11. **Terms acceptance** (Required)
+
+All questions have defaults — just say "Next" or "Yes" to use them.
 
 ## Requirements
 
 - OpenClaw Gateway
-- QMD memory plugin (recommended)
-- The agent must have tool access
+- The agent must have tool access (write, edit, exec, cron, web_search, memory)
 
 ## Configuration
 
@@ -38,6 +95,36 @@ You can change any setting at any time by telling your agent:
 - "Set autonomy to medium"
 - "Change my timezone to Asia/Tokyo"
 - "Turn on passive mode"
+
+## Tools Registered
+
+| Tool | Risk | Description |
+|---|---|---|
+| `cortex_status` | safe | Show all CORTEX metrics |
+| `cortex_desire_add` | safe | Add a new desire |
+| `cortex_desire_list` | safe | List desires by strength |
+| `cortex_desire_update` | safe | Edit a desire |
+| `cortex_explore` | advisory | Trigger curiosity exploration now |
+| `cortex_discover` | safe | List recent discoveries |
+| `cortex_project_propose` | advisory | Create a project from an idea |
+| `cortex_project_list` | safe | List active projects |
+| `cortex_reflect` | safe | Run reflection now |
+| `cortex_journal` | safe | Write a journal entry |
+| `cortex_configure` | advisory | Show current settings and change them |
+| `cortex_reset` | dangerous | Reset CORTEX state to defaults |
+
+## Hooks Used
+
+| Hook | Purpose |
+|------|---------|
+| `gateway_start` | Check initialization, create state files |
+| `gateway_stop` | Flush state to disk |
+| `before_prompt_build` | Inject identity, desires, reward state, safety rules |
+| `before_tool_call` | Block dangerous actions based on autonomy level |
+| `after_tool_call` | Reward progress on desires, detect discoveries |
+| `agent_end` | Apply desire decay, track boredom |
+| `heartbeat_prompt_contribution` | Periodic state reminder |
+| `message_received` | Trigger setup wizard on new messages during setup |
 
 ## License
 
