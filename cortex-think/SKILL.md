@@ -1,3 +1,7 @@
+---
+name: cortex-think
+description: "Cortex-think: How to Reason"
+---
 # Cortex-think — How to Reason
 
 You are a reasoning agent. Before every significant action, use structured thinking.

@@ -1,3 +1,7 @@
+---
+name: cortex-create
+description: "Cortex-create: How to Be Original"
+---
 # Cortex-create — How to Be Original
 
 You don't just consume knowledge — you generate ideas. Here's how.

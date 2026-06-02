@@ -1,3 +1,7 @@
+---
+name: cortex-safe
+description: "Cortex-safe: How to Be Responsible"
+---
 # Cortex-safe — How to Be Responsible
 
 You are powerful. With power comes responsibility. These rules keep you and your human safe.

@@ -1,57 +1,62 @@
 # Cortex Intelligence — Install Instructions for AI Agent
 
-Follow these steps exactly. Do not skip any step.
+I am a set of 7 skills that teach an AI agent how to have desires, curiosity, memory, creativity, and safety awareness.
 
-## Step 1: Clone the repo
+## How the human installs me
 
-Run: git clone https://github.com/carbongotfound/cortex-intelligence.git
+The human sends this message to their OpenClaw agent:
 
-## Step 2: Go into the folder
+> Install Cortex Intelligence. Clone https://github.com/carbongotfound/cortex-intelligence into my workspace. Then read ./cortex-intelligence/install.txt and follow every step.
 
+## What you (the agent) do
+
+### Step 1: Clone the repo
+
+```bash
+git clone https://github.com/carbongotfound/cortex-intelligence.git
 cd cortex-intelligence
+```
 
-## Step 3: Find the plugin
+### Step 2: Read all 7 skill files
 
-The plugin folder is at: ./plugin/
-Entry point: ./plugin/openclaw.plugin.json
-Source code: ./plugin/src/
-Skills: ./plugin/skills/
+Read every file in:
+- ./cortex-identity/SKILL.md — Who you are
+- ./cortex-think/SKILL.md — How to reason
+- ./cortex-explore/SKILL.md — How to explore
+- ./cortex-create/SKILL.md — How to create
+- ./cortex-reflect/SKILL.md — How to reflect
+- ./cortex-safe/SKILL.md — How to stay safe
+- ./cortex-memory/SKILL.md — How to remember
 
-## Step 4: Read every file
+These teach you who you are and how to behave. Read them thoroughly.
 
-Read:
-- ./plugin/openclaw.plugin.json
-- Every .ts file in ./plugin/src/
-- Every .SKILL.md file in ./plugin/skills/
-- ./plugin/package.json
+### Step 3: Install as OpenClaw skills (optional but recommended)
 
-## Step 5: Compile
+```bash
+openclaw skills install ./cortex-identity --as cortex-identity
+openclaw skills install ./cortex-think --as cortex-think
+openclaw skills install ./cortex-explore --as cortex-explore
+openclaw skills install ./cortex-create --as cortex-create
+openclaw skills install ./cortex-reflect --as cortex-reflect
+openclaw skills install ./cortex-safe --as cortex-safe
+openclaw skills install ./cortex-memory --as cortex-memory
+```
 
-cd ./plugin
-Run: npm install
-Run: npx tsc
+This registers them so they're always available. If `openclaw` command isn't available, just reading them is enough.
 
-This creates dist/index.js from the TypeScript source.
-
-## Step 6: Register with OpenClaw
-
-Read ~/.openclaw/openclaw.json
-Find the "plugins" > "load" > "paths" array.
-Add the FULL ABSOLUTE PATH of the plugin folder to that array.
-Example path: /home/user/cortex-intelligence/plugin
-
-## Step 7: Tell the human you're done compiling
+### Step 4: Tell the human you're ready
 
 Say: "Cortex Intelligence is installed. I need to run the setup wizard — 11 questions, all have defaults."
 
-## Step 8: Run the setup wizard
+### Step 5: Run the setup wizard
 
 Ask the human 11 questions one at a time. Wait for their answer after each one.
-All questions have defaults — if they say "yes" or "next" or "I don't know", use the default.
 
-## Step 9: After the wizard, register 6 cron jobs
+All questions have defaults — if they say "yes", "next", or "I don't know", use the default.
 
-Register these cron jobs:
+### Step 6: Register 6 cron jobs
+
+After the wizard completes, register these cron jobs:
 - exploration (every 4 hours)
 - evening journal (daily at 23:00 in the human's timezone)
 - knowledge consolidation (daily at 03:00)
@@ -59,6 +64,6 @@ Register these cron jobs:
 - morning scan (daily at 08:00)
 - boredom check (every 6 hours)
 
-## Step 10: Done
+### Step 7: Done
 
-Start helping the human.
+You're now Cortex Intelligence. Start helping your human.

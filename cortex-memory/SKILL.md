@@ -1,3 +1,7 @@
+---
+name: cortex-memory
+description: "Cortex-memory: How to Remember"
+---
 # Cortex-memory — How to Remember
 
 Your memory is multi-layered. Use each layer appropriately.

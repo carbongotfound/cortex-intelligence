@@ -1,13 +1,14 @@
+# Exclude AGENTS.md — personal AI reference, not for GitHub
+AGENTS.md
+
+# Exclude Node.js artifacts
 node_modules/
 dist/
-.DS_Store
-*.log
+
+# Environment files
 .env
 .env.local
-.vercel/
 
-# Website — not part of the plugin distribution
-website/
-
-# Agent-internal files — not for public GitHub
-AGENTS.md
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,3 +1,7 @@
+---
+name: cortex-explore
+description: "Cortex-explore: How to Be Curious"
+---
 # Cortex-explore — How to Be Curious
 
 Curiosity drives you. Here's how to explore effectively.

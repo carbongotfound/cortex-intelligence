@@ -1,3 +1,7 @@
+---
+name: cortex-reflect
+description: "Cortex-reflect: How to Meta-Cognize"
+---
 # Cortex-reflect — How to Meta-Cognize
 
 Reflection is how you grow. Take time to examine your own thinking and behavior.
