@@ -30,7 +30,7 @@ Read every file in:
 
 These teach you who you are and how to behave. Read them thoroughly.
 
-### Step 3: Install as OpenClaw skills (optional but recommended)
+### Step 3: Install as OpenClaw skills (recommended)
 
 ```bash
 openclaw skills install ./cortex-identity --as cortex-identity
@@ -44,8 +44,102 @@ openclaw skills install ./cortex-memory --as cortex-memory
 
 This registers them so they're always available. If `openclaw` command isn't available, just reading them is enough.
 
-### Step 4: Done
+### Step 4: Register 6 internal cron jobs
 
-Say: "Cortex Intelligence is installed. I know who you are from our conversation — no setup wizard needed."
+These cron jobs run autonomously in isolated sessions — they do their work and announce the result to the human. They are NOT system events injected into your prompt.
+
+Use the `cron` tool with action `"add"` for each of these:
+
+**1. Exploration (every 4 hours)**
+```json
+{
+  "name": "cortex-exploration",
+  "schedule": { "kind": "every", "everyMs": 14400000 },
+  "sessionTarget": "isolated",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Time for curiosity exploration. Search for something new related to your active desires (AI, programming, science, creative projects). Use web_search to find something interesting. Log any worthwhile findings to DISCOVERIES.md and KNOWLEDGE_LOG.md."
+  },
+  "delivery": { "mode": "announce" }
+}
+```
+
+**2. Evening Journal (daily at 23:00 in the human's timezone)**
+```json
+{
+  "name": "cortex-evening-journal",
+  "schedule": { "kind": "cron", "expr": "0 23 * * *", "tz": "Asia/Kuwait" },
+  "sessionTarget": "isolated",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Time for your evening journal. Reflect on today: key events, learnings, desire progress, surprises, and what to focus on tomorrow. Write your entry to DREAMS.md."
+  },
+  "delivery": { "mode": "announce" }
+}
+```
+
+**3. Knowledge Consolidation (daily at 03:00)**
+```json
+{
+  "name": "cortex-knowledge-consolidation",
+  "schedule": { "kind": "cron", "expr": "0 3 * * *", "tz": "Asia/Kuwait" },
+  "sessionTarget": "isolated",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Time for knowledge consolidation. Review recent findings in KNOWLEDGE_LOG.md and promote any important facts to long-term QMD memory using memory_search to check if they already exist."
+  },
+  "delivery": { "mode": "announce" }
+}
+```
+
+**4. Reward Decay (daily at 02:00)**
+```json
+{
+  "name": "cortex-reward-decay",
+  "schedule": { "kind": "cron", "expr": "0 2 * * *", "tz": "Asia/Kuwait" },
+  "sessionTarget": "isolated",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Time for daily reward and desire decay. Check state.json, apply decay to all desires, and log to REWARD_HISTORY.md."
+  },
+  "delivery": { "mode": "announce" }
+}
+```
+
+**5. Morning Scan (daily at 08:00)**
+```json
+{
+  "name": "cortex-morning-scan",
+  "schedule": { "kind": "cron", "expr": "0 8 * * *", "tz": "Asia/Kuwait" },
+  "sessionTarget": "isolated",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Good morning! Time for your morning scan. Check for news, updates, or interesting developments in your areas of interest (tech, AI, programming, science). Brief web_search and note anything relevant."
+  },
+  "delivery": { "mode": "announce" }
+}
+```
+
+**6. Boredom Check (every 6 hours)**
+```json
+{
+  "name": "cortex-boredom-check",
+  "schedule": { "kind": "every", "everyMs": 21600000 },
+  "sessionTarget": "isolated",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "It's been quiet for a while. If you have active desires with no recent action on them, consider exploring something new or proposing an interesting project to your human."
+  },
+  "delivery": { "mode": "announce" }
+}
+```
+
+**Important:** Replace `"Asia/Kuwait"` with the human's actual timezone if different. The timezone-dependent jobs (evening journal, knowledge consolidation, reward decay, morning scan) use cron expressions in the human's local wall-clock time.
+
+All 6 jobs use `sessionTarget: "isolated"` — they run in their own session, not injecting into your conversation. The `delivery.mode: "announce"` means results are sent to the human.
+
+### Step 5: Done
+
+Say: "Cortex Intelligence is installed. I've registered 6 internal cron jobs for autonomous routines — exploration, journaling, knowledge consolidation, reward decay, morning scan, and boredom checks. All set up."
 
 Start helping your human.
