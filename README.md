@@ -22,7 +22,7 @@ Cortex Intelligence is a plugin + skill system that transforms any capable AI ag
 
 Send this message to your OpenClaw agent:
 
-> Install Cortex Intelligence. Read the instructions at https://cortex-intelligence.vercel.app/install.txt then follow the setup wizard.
+> Install Cortex Intelligence. Read the instructions at https://cortex-intelligence-plugin.vercel.app/install.txt then follow the setup wizard.
 
 The agent will set everything up automatically. The setup wizard asks 11 questions — all have defaults that give maximum capabilities.
 

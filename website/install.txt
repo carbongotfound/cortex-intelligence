@@ -6,7 +6,7 @@ Cortex Intelligence is a plugin + skill system for agents running on the OpenCla
 
 Send this exact message to your OpenClaw agent:
 
-> Install Cortex Intelligence. Read the instructions at https://cortex-intelligence.vercel.app/install.txt then follow the setup wizard.
+> Install Cortex Intelligence. Read the instructions at https://cortex-intelligence-plugin.vercel.app/install.txt then follow the setup wizard.
 
 The agent will read this file and set everything up automatically.
 
@@ -43,4 +43,4 @@ MIT — Free, open source, do whatever you want with it.
 ---
 
 Made by Carbon
-https://cortex-intelligence.vercel.app
+https://cortex-intelligence-plugin.vercel.app
