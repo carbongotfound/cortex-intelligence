@@ -1,6 +1,66 @@
 # Cortex Intelligence
 
-A plugin + skill system for agents running on the [OpenClaw](https://openclaw.ai) platform. Gives your AI agent desires, curiosity, memory, creativity, rewards, and a safety governor.
+A plugin + skill system for agents on [OpenClaw](https://openclaw.ai). Gives your AI agent desires, curiosity, memory, creativity, rewards, and safe autonomy.
+
+## Quick Install
+
+Copy this EXACT message and send it to your OpenClaw agent:
+
+```
+Install Cortex Intelligence.
+
+Step 1: Clone the repo into my workspace.
+Run: git clone https://github.com/carbongotfound/cortex-intelligence.git
+
+Step 2: Go into the folder.
+cd cortex-intelligence
+
+Step 3: Find the plugin folder.
+It's at: ./plugin/
+The entry point is: ./plugin/openclaw.plugin.json
+All source code is in: ./plugin/src/
+All skill files are in: ./plugin/skills/
+
+Step 4: Read every file.
+Read ./plugin/openclaw.plugin.json
+Read every .ts file in ./plugin/src/
+Read every .SKILL.md file in ./plugin/skills/
+Read ./plugin/package.json
+
+Step 5: Install dependencies and compile.
+cd ./plugin
+Run: npm install
+Run: npx tsc
+This creates dist/index.js from the TypeScript source.
+
+Step 6: Register the plugin with OpenClaw.
+Read the OpenClaw config file at ~/.openclaw/openclaw.json
+Add the path to the plugin folder to the "plugins" > "load" > "paths" array.
+The path should be: the full absolute path of the plugin folder
+(example: /home/user/cortex-intelligence/plugin)
+
+Step 7: Tell me you're done.
+Say: "Cortex Intelligence is installed. I need to run the setup wizard — 11 questions, all have defaults."
+
+Step 8: Run the wizard.
+Ask me 11 questions one at a time. Wait for my answer after each one.
+All questions have defaults — if I say "yes" or "next" or "I don't know", use the default.
+
+Step 9: After the wizard, register 6 cron jobs for routines.
+Register these cron jobs:
+  - exploration (every 4 hours)
+  - evening journal (daily at 23:00 in my timezone)
+  - knowledge consolidation (daily at 03:00)
+  - reward decay (daily at 02:00)
+  - morning scan (daily at 08:00)
+  - boredom check (every 6 hours)
+
+Step 10: Done. Start helping me.
+```
+
+Your agent follows steps 1 through 10 in order. One message, everything included.
+
+## Repository structure
 
 ```
 cortex-intelligence/
@@ -41,57 +101,31 @@ cortex-intelligence/
 │       └── REWARD_HISTORY.md
 ```
 
-## Quick Install
-
-Copy and paste this EXACT message to your OpenClaw agent:
-
-> Install Cortex Intelligence.
->
-> Clone https://github.com/carbongotfound/cortex-intelligence into my workspace.
->
-> The plugin is at `cortex-intelligence/plugin/`.
-> The entry point is `cortex-intelligence/plugin/openclaw.plugin.json`.
-> The source code is in `cortex-intelligence/plugin/src/`.
-> The skills are in `cortex-intelligence/plugin/skills/`.
->
-> Read all the source files, compile with `npm install && npx tsc` in the plugin directory, then run the setup wizard.
-
-Your agent will:
-1. Clone the repo to your workspace
-2. Read all the plugin source files and skills
-3. Compile the TypeScript to JavaScript
-4. Ask you 11 setup questions (all have defaults)
-5. Start running with full autonomy
-
 ## Features
 
 | Feature | What It Does |
 |---------|-------------|
-| **Desire Engine** | 6 types of drives that grow, decay, and push the agent to act |
-| **Curiosity Explorer** | Autonomous web exploration on a schedule |
-| **Memory System** | Dual-layer: short-term knowledge files + QMD long-term |
-| **Reward System** | Points, flow state, diminishing returns |
-| **Creative Engine** | 5 brainstorming techniques, scores ideas, proposes projects |
-| **Safety Governor** | 4-tier risk classification with approval matrix |
-| **Daily Routines** | Morning scan, evening journal, nightly consolidation |
-| **Setup Wizard** | 11 questions, defaults give max capabilities |
+| Desire Engine | 6 types of drives that grow, decay, and push the agent to act |
+| Curiosity Explorer | Autonomous web exploration on a schedule |
+| Memory System | Short-term knowledge files + QMD long-term memory |
+| Reward System | Points, flow state, diminishing returns, obsession prevention |
+| Creative Engine | 5 brainstorming techniques, scores ideas, proposes projects |
+| Safety Governor | 4-tier risk classification with approval matrix |
+| Daily Routines | Morning scan, evening journal, nightly consolidation |
+| Setup Wizard | 11 questions, defaults give max capabilities |
 
 ## Requirements
 
 - OpenClaw Gateway running
-- QMD memory plugin (recommended) or built-in memory
-- Agent must have tool access: write, edit, exec, cron, web_search, memory
+- QMD memory plugin (recommended)
+- Agent needs tool access: read, write, edit, exec, cron, web_search, memory
 
-## Changing Settings
+## Change settings anytime
 
 Tell your agent:
 - "Set autonomy to medium"
 - "Change my timezone to Asia/Tokyo"
 - "Turn on passive mode"
-
-## License
-
-MIT — Free, open source, do whatever you want with it.
 
 ---
 
