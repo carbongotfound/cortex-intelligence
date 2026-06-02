@@ -1,6 +1,8 @@
 # Cortex Intelligence
 
-A plugin + skill system for agents on [OpenClaw](https://openclaw.ai). Gives your AI agent desires, curiosity, memory, creativity, rewards, and safe autonomy.
+Give your AI agent desires, curiosity, memory, creativity, and safe autonomy.
+
+Cortex Intelligence is a plugin + skill system that transforms any capable AI agent into something that acts like it has a mind of its own. It develops drives, explores when bored, remembers what it learned, generates original ideas, and knows when to ask for permission.
 
 ## Quick Install
 
@@ -8,7 +10,7 @@ Copy this message and send it to your OpenClaw agent:
 
 > Install Cortex Intelligence. Read the file at https://raw.githubusercontent.com/carbongotfound/cortex-intelligence/main/install.txt and follow every step.
 
-The install.txt file tells the agent exactly what to do — clone, read files, compile, register with OpenClaw, run the setup wizard, and set up cron jobs.
+The install.txt file tells the agent exactly what to do — clone, read files, compile, register with OpenClaw, run the setup wizard, and set up cron jobs. Zero effort from you.
 
 ## Repository structure
 
